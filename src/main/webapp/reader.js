@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const carList = document.getElementById('carList');
     let carsData;
-    let currentCarId; // Добавляем переменную для хранения ID текущего автомобиля
+    let currentCarId;
+    window.myModal = new bootstrap.Modal(document.getElementById('editCarModal'));
 
     window.loadCars = function () {
         const xhr = new XMLHttpRequest();
@@ -19,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.send();
     }
 
-    window.myModal = new bootstrap.Modal(document.getElementById('editCarModal'));
-
     function displayCars(cars) {
         let tableHTML = `
         <table class="table table-striped table-bordered" style="width: 100%;">
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <th style="width: 20%;">Тип двигателя</th>
                     <th style="width: 20%;">Год выпуска</th>
                     <th style="width: 20%;">КПП</th>
-                    <th style="width: 20%;">Действия</th> <!-- Новая ячейка для кнопок -->
+                    <th style="width: 30%;">Действия</th> 
                 </tr>
             </thead>
             <tbody>
@@ -64,15 +63,13 @@ document.addEventListener('DOMContentLoaded', function () {
     window.editCar = function (carId) {
         // Находим выбранный автомобиль в массиве данных
         const selectedCar = carsData.find(car => car.id === carId);
-        // Заполняем модальное окно данными выбранного автомобиля
+
         document.getElementById('editMake').value = selectedCar.make;
         document.getElementById('editModel').value = selectedCar.model;
         document.getElementById('editEngine').value = selectedCar.engine;
         document.getElementById('editYear').value = selectedCar.year;
         document.getElementById('editTransmission').value = selectedCar.transmission;
-        // Сохраняем ID текущего автомобиля
         currentCarId = carId;
-        // Показываем модальное окно
         myModal.show();
     }
 
@@ -84,28 +81,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const year = document.getElementById('editYear').value;
         const transmission = document.getElementById('editTransmission').value;
 
-        // Отправляем запрос на сервер для сохранения изменений
         const xhr = new XMLHttpRequest();
-        xhr.open('PUT', `http://localhost:8080/OOP_5lab_4sem_war_exploded/car?id=${currentCarId}`, true);
+        xhr.open('PUT', `http://localhost:8080/OOP_5lab_4sem_war_exploded/car`, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.onload = function () {
             if (xhr.status === 200) {
-                loadCars(); // Обновляем список после успешного сохранения
-                myModal.hide(); // Закрываем модальное окно
+                loadCars();
+                myModal.hide();
             } else {
                 console.error('Произошла ошибка при сохранении изменений:', xhr.statusText);
             }
         };
 
-        // Отправляем данные на сервер в формате JSON
         xhr.send(JSON.stringify({
             make: make,
             model: model,
             engine: engine,
             year: year,
             transmission: transmission,
-            id : currentCarId
+            id: currentCarId
         }));
     }
 
@@ -127,11 +122,3 @@ document.addEventListener('DOMContentLoaded', function () {
     loadCars();
 });
 
-// Добавим обработчики событий для закрытия модального окна при нажатии на крестик или кнопку "Закрыть"
-document.getElementById('editCarModal').addEventListener('hidden.bs.modal', function () {
-    document.getElementById('editMake').value = '';
-    document.getElementById('editModel').value = '';
-    document.getElementById('editEngine').value = '';
-    document.getElementById('editYear').value = '';
-    document.getElementById('editTransmission').value = '';
-});
