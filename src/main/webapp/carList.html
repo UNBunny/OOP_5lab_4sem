@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Чтение</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"-->
-<!--          crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"-->
+    <!--          crossorigin="anonymous">-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet" type="text/css">
     <style>
@@ -49,8 +49,8 @@
         }
 
         nav ul li:first-child form button {
-            background-color: #ff8e00; /
-            color: white;
+            background-color: #ff8e00;
+        / color: white;
         }
 
         /* Остальные кнопки */
@@ -94,7 +94,9 @@
 
 </head>
 <body>
-<script src="reader2.js"></script>
+<script src="reader.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 
 <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
@@ -114,6 +116,51 @@
     <tbody id="carList">
     </tbody>
 </table>
+
+
+<!-- Модальное окно для редактирования автомобиля -->
+<div class="modal fade" id="editCarModal" tabindex="-1" role="dialog" aria-labelledby="editCarModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCarModalLabel">Редактирование автомобиля</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма для редактирования данных автомобиля -->
+                <form id="editCarForm">
+                    <div class="form-group">
+                        <label for="editMake">Марка</label>
+                        <input type="text" class="form-control" id="editMake">
+                    </div>
+                    <div class="form-group">
+                        <label for="editModel">Модель</label>
+                        <input type="text" class="form-control" id="editModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEngine">Тип двигателя</label>
+                        <input type="text" class="form-control" id="editEngine">
+                    </div>
+                    <div class="form-group">
+                        <label for="editYear">Год выпуска</label>
+                        <input type="number" class="form-control" id="editYear">
+                    </div>
+                    <div class="form-group">
+                        <label for="editTransmission">КПП</label>
+                        <input type="text" class="form-control" id="editTransmission">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
