@@ -1,9 +1,3 @@
-<img src="https://github.com/UNBunny/OOP_5lab_4sem/assets/112119548/1efb3a6c-05f1-42f3-afef-fb963b8c1fc0" width="250">
-<img src="https://github.com/UNBunny/OOP_5lab_4sem/assets/112119548/f7764c0c-cec0-4c7b-823b-82b6265ba678" width="400">
-<img src="https://github.com/UNBunny/OOP_5lab_4sem/assets/112119548/b4bc26e1-d983-4ca1-be5c-fdb26854c66d" width="4000">
-<img src="https://github.com/UNBunny/OOP_5lab_4sem/assets/112119548/754b299c-1a7c-47b7-baad-7fdb61548675" width="400">
-<img src="https://github.com/UNBunny/OOP_5lab_4sem/assets/112119548/d178fc5f-0d98-4acd-a4cc-2b9e3400f871" width="250">
-
 # Лабараторная работа №5
 Разработать страницу, отображающую список объектов, с хранением их на сервере файле. передача данных осуществляется через БД MySQL, клиент и сервер общаются по средством передачи данных. На странице предусмотреть форму добавления объектов в список. Тема: список автомобилей. Должны быть все четыре элемента CRUD (create-read-update-delete)
 
